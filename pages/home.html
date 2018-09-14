@@ -1,0 +1,190 @@
+<header>
+	<nav class="navbar navbar-default-tr navbar-default navbar-fixed-top" style=" margin-bottom: 0">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/">
+	      	<img src="images/logo.png" height="30">
+	      </a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav navbar-right" style="margin-right: 10px; ">
+	        <li class="active"><a href="/">HOME <span class="sr-only">(current)</span></a></li>
+	        <li><a href="/architecture">ARCH</a></li>
+	        <li><a href="/services">SERVICES</a></li>
+	        <li uib-dropdown>
+			  <a href id="tutorial-dropdown" uib-dropdown-toggle style="padding-left: 5px;">
+			    TUTORIAL
+			    <span class="caret"></span>
+			  </a>
+			  <ul uib-dropdown-menu role="menu" aria-labelledby="tutorial-dropdown">
+			    <li role="menuitem"><a href="/tutorial/data-exchange">Data Exchange</a></li>
+			    <li role="menuitem"><a href="/tutorial/city-services">City Service</a></li>
+			    <li role="menuitem"><a href="/tutorial/connector">Connector</a></li>
+			    <li role="menuitem"><a href="/tutorial/marketplace">Marketplace</a></li>
+			    <li role="menuitem"><a href="/tutorial/developer-portal">Developer Portal</a></li>
+			    <li role="menuitem"><a href="/tutorial/visualization">Visualization</a></li>
+			  </ul>
+			</li>
+	        <li><a href="/marketplace">MARKETPLACE</a></li>
+	        <li><a href="/about-us">ABOUT</a></li>
+			<li ng-hide="!auth" uib-dropdown>
+			  <a href id="user-dropdown" uib-dropdown-toggle style="padding-left: 5px;">
+			    <img style="width: 20px; height: 20px; border-radius: 10px; margin-right: 5px;" src="{{user.thumbnail == null && 'images/user-default.jpg' || user.thumbnail}}">
+			    {{user.userName}}
+			    <span class="caret"></span>
+			  </a>
+			  <ul uib-dropdown-menu role="menu" aria-labelledby="user-dropdown">
+			    <li role="menuitem"><a href="/myProfile">My Profile</a></li>
+			    <li role="menuitem"><a href="/" ng-click="logout()">Log out</a></li>
+			  </ul>
+			</li>
+	        <button ng-hide="auth" type="button" ng-click="openModal()" class="btn btn-default navbar-btn">LOG IN</button>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+</header>
+<div class="container header-image">
+	<div class="row">
+		<div class="col-md-4 col-md-offset-1 animated fadeIn" style="margin-top: 5vh;">
+			<h1 >Connect your data to the world.</h1>
+			<h3>Open data exchange platform for supporting smart city service 
+	development and innovation.</h3>
+			<div class="row">
+				<div class="col-md-6">
+					<h4><a style="color: white;" href="#">Learn more about us</a></h4>
+				</div>
+				<div class="col-md-6">
+					<h4><a style="color: white;" href="#">join us now</a></h4>
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>
+<br>
+<br>
+<div class="container problem">
+	<div class="row">
+		<br>
+		<div class="col-xs-6 col-xs-offset-3 col-md-3 col-md-offset-1">
+			<img class="problemImg" src="images/problem1.png">
+		</div>
+		<div class="col-md-6 col-xs-12 col-md-offset-2" >
+			<h3>มีข้อมูลอยู่ในมือ อยากแลกเปลี่ยนกับคนอื่น?</h3>
+			<p>เราคือพื้นที่ที่ทำให้คุณสามารถแบ่งปันข้อมูลที่คุณมีแก่ผู้อื่นได้โดยใช้เรา Smart City Cloud Platform เป็นศูนย์กลาง เพื่อให้ท่านสามารถแลกเปลี่ยนข้อมูลได้ง่าย เป็นอิสระ และ ปลอดภัย</p>
+		</div>
+	</div>
+	<br>
+	<br>
+	<div class="row" style="margin-top: 150px;">
+		<div class="col-md-6 col-xs-12">
+			<h3>ประสบปัญหาที่เก็บข้อมูลไม่เพียงพอ? ดึงมาใช้ได้ช้า?</h3>
+			<p>ในปัจจุบันมีการนำเซ็นเซอร์มาใช้กันอย่างแพร่หลาย ทำให้มีปริมาณข้อมูลที่ต้องจัดเก็บเพิ่มมากขึ้น ซึ่งทำให้มักจะมีปัญหาในการเรียกใช้งาน ค้นหา หรือวิเคราะห์ข้อมูลได้ช้า Smart City Cloud Platform สามารถแก้ปัญหานี้ได้ เนื่องจากแพลตฟอร์มใช้ Elastic Data Storage ซึ่งถูกออกแบบมาเพื่อรองรับการเก็บและเรียกใช้ข้อมูลปริมาณมาก เช่น ข้อมูลที่รับจากเซ็นเซอร์ ข้อมูลจากระบบ cctv เป็นต้น </p>
+		</div>
+		<div class="col-xs-6 col-xs-offset-3 col-md-3 col-md-offset-2">
+			<img class="problemImg" src="images/problem2.png">
+		</div>
+	</div>
+	<br>
+	<br>
+	<div class="row" style="margin-top: 150px;">
+		<div class="col-xs-6 col-xs-offset-3 col-md-3 col-md-offset-1">
+			<img class="problemImg" src="images/useus2.png">
+		</div>
+		<div class="col-md-6 col-xs-12 col-md-offset-2">
+			<h3>มีไอเดีย แต่ไม่มีข้อมูล?</h3>
+			<p>เความคิดสร้างสรรค์ของคุณร่วมกับคลังข้อมูลที่หลากหลายของเรา อาจกลายเป็นบริการหรือธุรกิจที่มีประโยชน์ </p>
+		</div>
+	</div>
+</div>
+<br>
+<div class="container service">
+	<div class="row">
+		<h2>Our Services</h2>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-xs-12">
+			<div class="row">
+				<img class="serviceImg" src="images/services/connector.png">
+				<h3>Data Connector</h3>
+				<p>เชื่อมต่อข้อมูลที่คุณมีกับแพลตฟอร์มของเราเพื่อใช้บริการมอนิเตอร์ ทราบทุกรายละเอียดเมื่อมีคนมาใช้ข้อมูลของคุณ ให้ผู้อื่นใช้งานได้ง่ายผ่านทาง API</p>
+			</div>
+		</div>
+		<div class="col-md-4 col-xs-12">
+			<div class="row">
+				<img class="serviceImg" src="images/services/exchange1.png">
+				<h3>Data Exchange</h3>
+				<p>แลกเปลี่ยนข้อมูลของคุณกับคนอื่นโดยมีเราเป็นตัวกลาง ง่าย และ ปลอดภัย</p>
+			</div>
+		</div>
+		<div class="col-md-4 col-xs-12">
+			<div class="row">
+				<img class="serviceImg" src="images/services/cityservice1.png">
+				<h3>City Service</h3>
+				<p>สร้างหรือแบ่งปันบริการ หรืออัลกอริธึ่มที่ใช้ประมวลผลข้อมูลต่างๆของคุณ</p>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="margin-top: 5vh;">
+		<button type="button" ng-click="goto('/services')" class="btn btn-default btn-lg">ดูเพิ่มเติม</button>
+	</div>
+</div>
+<br>
+<div class="container marketplace">
+	<div class="row">
+		<h2>Our Marketplace</h2>
+	</div>
+	<div class="row"style="margin-top: 5vh;">
+		<div class="col-md-4 col-xs-12" ng-repeat="collection in collections | filter: {thumbnail: ''} | limitTo : 2" style="padding: 0 2vw;">
+			<div class="thumbnail" style="border-radius: 6px; padding-top: 5vh;">
+		      <a ng-href="/marketplace/collection/{{collection.collectionId}}">
+		        <img ng-src="{{collection.thumbnail  == null && 'images/user-default.jpg' || collection.thumbnail}}" style="height: 150px; width:50% ">
+		        <div class="caption">
+		        	<h4 class="hide-text">{{collection.collectionName}}</h4>
+		          	<p class="hide-text">By : {{collection.owner}}</p>
+		        </div>
+		      </a>
+		    </div>
+		</div>
+		<div class="col-md-4 col-xs-12" ng-repeat="service in services | filter: {thumbnail: ''} | limitTo : 4" style="padding: 0 2vw;">
+			<div class="thumbnail" style="border-radius: 6px; padding-top: 5vh;">
+		      <a ng-href="/marketplace/city-service/{{service.serviceId}}">
+		        <img ng-src="{{service.thumbnail  == null && 'images/user-default.jpg' || service.thumbnail}}" style="height: 150px; width:50% ">
+		        <div class="caption">
+		        	<h4 class="hide-text">{{service.serviceName}}</h4>
+		          	<p class="hide-text">By : {{service.owner}}</p>
+		        </div>
+		      </a>
+		    </div>
+		</div>
+	</div>
+	<div class="row" style="margin-top: 5vh;">
+		<button type="button" class="btn btn-default btn-lg" ng-click="goto('/marketplace')">ดูเพิ่มเติม</button>
+	</div>
+</div>
+<div class="container">
+	<div class="row" style="margin-top: 10vh;">
+		<div class="col-xs-10 col-xs-offset-1 text-center">
+			<h3>ลงทะเบียนเพื่อเข้าถึงข้อมูลและบริการเหล่านี้ได้ฟรี ไม่มีค่าใช้จ่าย</h3>
+			<h3>มาเป็นส่วนนึงกับเรา!</h3>
+		</div>	
+	</div>
+</div>
+<div class="container">
+	<div class="row text-center" style="margin-top: 5vh;">
+		<button type="button" class="btn btn-default2 btn-lg">ลงทะเบียน</button> <br><br>
+		<br>
+		<br>
+		<img style="width: 80%" src="images/Group1.png">
+	</div>
+</div>
+<br>
+<br>
+<br>
+<br>

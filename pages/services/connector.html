@@ -1,0 +1,118 @@
+<header>
+	<nav class="navbar navbar-default navbar-fixed-top" style=" margin-bottom: 0">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/">
+	      	<img src="images/logo.png" height="30">
+	      </a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav navbar-right" style="margin-right: 10px; ">
+	        <li><a href="/">HOME</a></li>
+	        <li><a href="/architecture">ARCH</a></li>
+	        <li><a href="/services">SERVICES</a></li>
+	        <li uib-dropdown>
+			  <a href id="tutorial-dropdown" uib-dropdown-toggle style="padding-left: 5px;">
+			    TUTORIAL
+			    <span class="caret"></span>
+			  </a>
+			  <ul uib-dropdown-menu role="menu" aria-labelledby="tutorial-dropdown">
+			    <li role="menuitem"><a href="/tutorial/data-exchange">Data Exchange</a></li>
+			    <li role="menuitem"><a href="/tutorial/city-services">City Service</a></li>
+			    <li role="menuitem"><a href="/tutorial/connector">Connector</a></li>
+			    <li role="menuitem"><a href="/tutorial/marketplace">Marketplace</a></li>
+			    <li role="menuitem"><a href="/tutorial/developer-portal">Developer Portal</a></li>
+			    <li role="menuitem"><a href="/tutorial/visualization">Visualization</a></li>
+			  </ul>
+			</li>
+	        <li><a href="/marketplace">MARKETPLACE</a></li>
+	        <li><a href="/about-us">ABOUT</a></li>
+			<li ng-hide="!auth" uib-dropdown>
+			  <a href id="user-dropdown" uib-dropdown-toggle style="padding-left: 5px;">
+			    <img style="width: 20px; height: 20px; border-radius: 10px; margin-right: 5px;" src="{{user.thumbnail == null && 'images/user-default.jpg' || user.thumbnail}}">
+			    {{user.userName}}
+			    <span class="caret"></span>
+			  </a>
+			  <ul uib-dropdown-menu role="menu" aria-labelledby="user-dropdown">
+			    <li role="menuitem"><a href="/myProfile">My Profile</a></li>
+			    <li role="menuitem"><a href="/" ng-click="logout()">Log out</a></li>
+			  </ul>
+			</li>
+	        <button ng-hide="auth" type="button" ng-click="openModal()" class="btn btn-default navbar-btn">LOG IN</button>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+</header>
+<div class="container arch">
+	<div class="row text-center">
+		<h1>CONNECTOR</h1>
+	</div>
+	<div class="row" style="margin: 5vh 0;">
+		<div class="col-md-5 col-md-offset-1">
+			<h2>Connect to your services with us for better monitoring.</h2>
+			<p>
+				ในปัจจุบันมีระบบเมืองอัจฉริยะอยู่หลายแบบ ตัวอย่างเช่น ระบบรถแท๊กซี่อัจฉริยะ ระบบตรวจวัดอากาศ ระบบตรวจคุณภาพน้ำ เป็นต้น หลายๆ ระบบที่มีอยู่มักจะมีระบบเป็นของตัวเอง ทางโครงการคลาวด์แพลตฟอร์มเพื่อการบูรณาการระบบเมืองอัจฉริยะต้องการรวบรวมข้อมูลจากแหล่งต่างๆ เพื่อให้ทางนักพัฒนาและผู้วิจัยสามารถทำไปใช้สร้างนวัตกรรมหรือแอพพลิเคชันเพื่อให้เกิดประโยชน์แก่ประชาชนทั่วไปได้ จึงได้ทำการพัฒนาโปรแกรมเชื่อมต่อ (connectors) สำหรับดึงข้อมูลดิบ (raw data) จากแหล่งข้อมูลต่างๆ แล้วนำเข้าฐานข้อมูลแบบกระจายตัว (distributed storage) ของระบบเมืองอัจฉริยะ 
+
+			</p>
+		</div>
+		<div class="col-md-4 hidden-xs" style="margin-top: 7vh;">
+			<img class="serviceImg2" src="images/services/connector.png">
+		</div>
+		<div class="col-md-9 col-md-offset-1">
+			<p>
+				เนื่องจากบางระบบเกิดขึ้นมาหลายปี ตัวอย่างเช่น ข้อมูลเกี่ยวกับสังคมและสวัสดิการ ที่เก็บทางภาครัฐ ทางเว็บไซต์ <a href="https://data.go.th">https://data.go.th</a> ซึ่งระบบเหล่านี้ไม่ได้ถูกสร้างเพื่อรองรับการเชื่อมต่อกับระบบอื่นๆ ได้อย่างอัติโนมัติ แต่ถ้าเป็นระบบที่เพิ่งถูกพัฒนาในช่วงไม่กี่ปีที่ผ่านมา ส่วนใหญ่ จะมี API ที่รองรับการเชื่อมต่อทำให้ สามารถเชื่อมต่อกับระบบคลาวด์แพลตฟอร์มเพื่อบูรณาการเมืองอัจฉริยะได้ทันที เพื่อรองรับการนำเข้าข้อมูลและเชื่อมต่อกับทั้งระบบแบบเก่าและแบบใหม่ เราจึงได้พัฒนาโปรแกรมเชื่อมต่อขึ้นมา และรวบรวมแหล่งข้อมูลต่าง ๆ ให้มากที่สุด เพื่อให้ง่ายต่อการเข้าถึง และสามารถนำข้อมูลไปใช้เพื่อพัฒนาระบบเมืองอัจฉริยะ
+			</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-9 col-md-offset-1">
+			<h2>Type of Connector</h2>
+			<p  style="margin-left: 2vw;">
+				1. แหล่งข้อมูลที่มี API ในการดึง
+				ผู้ใช้สามารถนาข้อมูลเข้าโดยการเชื่อม API จากระบบของตน เข้าในระบบคลาวด์แพลตฟอร์มเพื่อการบูรณาการเมืองอัจฉริยะได้ทันที
+			</p>
+			<p  style="margin-left: 2vw;">
+				2. แหล่งข้อมูลไม่มี API รองรับการดึงข้อมูลออก
+			</p>
+				<p style="margin-left: 4vw;">
+					i. โปรแกรมเชื่อมต่อที่รองรับข้อมูลแบบไฟล์ (File-based Connector)
+				</p>
+					<p style="margin-left: 6vw;">
+						๐ กรณีที่ไฟล์อยู่บนเว็บไซต์ (Website)
+						ตัวอย่างเช่น data.go.th และ dbd.go.th กรณีนี โปรแกรมเชื่อมต่อจะทาการดึงข้อมูลผ่านส่วนประกอบต่าง ๆ ใน HTML เพื่อทาการดาวน์โหลดไฟล์เหล่านั นเข้าสู่ระบบ
+					</p>
+					<p style="margin-left: 6vw;">
+						๐ กรณีที่ไฟล์อยู่บนเซิร์ฟเวอร์ (Server) ต้องใช้ SCP
+					</p>
+				<p style="margin-left: 4vw;">
+					ii. โปรแกรมเชื่อมต่อที่รองรับข้อมูลแบบการร้องขอผ่านเว็บ (Web-request-based Connector)
+				</p>
+		</div>
+	</div>
+	<br/>
+	<br/>
+	<br/>
+	<div class="row">
+		<div class="col-md-9 col-md-offset-1">
+			<h2>ADDITIONAL RESOURCES</h2>
+			<br/>
+			<br/>
+			<div class="row text-center">
+				<div class="col-xs-2 col-xs-offset-2"> 
+					<h4>goto</h4>
+				</div>
+				<div class="col-xs-2">
+					<button class="btn-default">tutorial</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>

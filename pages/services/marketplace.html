@@ -1,0 +1,119 @@
+<header>
+	<nav class="navbar navbar-default navbar-fixed-top" style=" margin-bottom: 0">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/">
+	      	<img src="images/logo.png" height="30">
+	      </a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav navbar-right" style="margin-right: 10px; ">
+	        <li><a href="/">HOME</a></li>
+	        <li><a href="/architecture">ARCH</a></li>
+	        <li><a href="/services">SERVICES</a></li>
+	        <li uib-dropdown>
+			  <a href id="tutorial-dropdown" uib-dropdown-toggle style="padding-left: 5px;">
+			    TUTORIAL
+			    <span class="caret"></span>
+			  </a>
+			  <ul uib-dropdown-menu role="menu" aria-labelledby="tutorial-dropdown">
+			    <li role="menuitem"><a href="/tutorial/data-exchange">Data Exchange</a></li>
+			    <li role="menuitem"><a href="/tutorial/city-services">City Service</a></li>
+			    <li role="menuitem"><a href="/tutorial/connector">Connector</a></li>
+			    <li role="menuitem"><a href="/tutorial/marketplace">Marketplace</a></li>
+			    <li role="menuitem"><a href="/tutorial/developer-portal">Developer Portal</a></li>
+			    <li role="menuitem"><a href="/tutorial/visualization">Visualization</a></li>
+			  </ul>
+			</li>
+	        <li><a href="/marketplace">MARKETPLACE</a></li>
+	        <li><a href="/about-us">ABOUT</a></li>
+			<li ng-hide="!auth" uib-dropdown>
+			  <a href id="user-dropdown" uib-dropdown-toggle style="padding-left: 5px;">
+			    <img style="width: 20px; height: 20px; border-radius: 10px; margin-right: 5px;" src="{{user.thumbnail == null && 'images/user-default.jpg' || user.thumbnail}}">
+			    {{user.userName}}
+			    <span class="caret"></span>
+			  </a>
+			  <ul uib-dropdown-menu role="menu" aria-labelledby="user-dropdown">
+			    <li role="menuitem"><a href="/myProfile">My Profile</a></li>
+			    <li role="menuitem"><a href="/" ng-click="logout()">Log out</a></li>
+			  </ul>
+			</li>
+	        <button ng-hide="auth" type="button" ng-click="openModal()" class="btn btn-default navbar-btn">LOG IN</button>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+</header>
+<div class="container arch">
+	<div class="row text-center">
+		<h1>MARKETPLACE</h1>
+	</div>
+	<div class="row" style="margin: 5vh 0;">
+		<div class="col-md-5 col-md-offset-1">
+			<h2></h2>
+			<p>
+				ในส่วนของ Marketplace เป็นการรวบรวมบริการและข้อมูลทั้งหมดบนแพลตฟอร์มไว้ในที่เดียวกัน ทำให้ผู้ใช้งานสามารถค้นหาได้อย่างสะดวก โดยผู้ใช้งานสามารถสืบค้นข้อมูลจาก collections ที่ต้องการใช้งานและเลือกใช้บริการจาก city service ที่มีอยู่ในระบบได้อย่างหลากหลาย รวมถึงสามารถเพิ่มบริการและข้อมูลของตนเองลงใน Marketplace เพื่อต่อยอดธุรกิจของตนเองไเ้อีกด้วย
+			</p>
+		</div>
+		<div class="col-md-4 hidden-xs" style="margin-top: 7vh;">
+			<img class="serviceImg2" src="images/services/marketp1.png">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-9 col-md-offset-1">
+			<h2>example</h2>
+			<div class="row"style="margin-top: 5vh;">
+				<div class="col-md-4 col-xs-6" ng-repeat="collection in collections | filter: {thumbnail: ''} | limitTo : 2" style="padding: 0 2vw;">
+					<div class="thumbnail" style="border-radius: 6px; padding-top: 5vh;">
+				      <a ng-href="/marketplace/collection/{{collection.collectionId}}">
+				        <img ng-src="{{collection.thumbnail  == null && 'images/user-default.jpg' || collection.thumbnail}}" style="height: 150px; width:50% ">
+				        <div class="caption">
+				        	<h4 class="hide-text">{{collection.collectionName}}</h4>
+				          	<p class="hide-text">By : {{collection.owner}}</p>
+				        </div>
+				      </a>
+				    </div>
+				</div>
+				<div class="col-md-4 col-xs-6" ng-repeat="service in services | filter: {thumbnail: ''} | limitTo : 4" style="padding: 0 2vw;">
+					<div class="thumbnail" style="border-radius: 6px; padding-top: 5vh;">
+				      <a ng-href="/marketplace/city-service/{{service.serviceId}}">
+				        <img ng-src="{{service.thumbnail  == null && 'images/user-default.jpg' || service.thumbnail}}" style="height: 150px; width:50% ">
+				        <div class="caption">
+				        	<h4 class="hide-text">{{service.serviceName}}</h4>
+				          	<p class="hide-text">By : {{service.owner}}</p>
+				        </div>
+				      </a>
+				    </div>
+				</div>
+			</div>
+		</div>
+		<div class="row text-center" style="margin-top: 5vh;">
+			<button type="button" class="btn btn-default btn-lg" ng-click="goto('/marketplace')">ดูเพิ่มเติม</button>
+		</div>
+	</div>
+	<br/>
+	<br/>
+	<br/>
+	<div class="row">
+		<div class="col-md-9 col-md-offset-1">
+			<h2>ADDITIONAL RESOURCES</h2>
+			<br/>
+			<br/>
+			<div class="row text-center">
+				<div class="col-xs-2 col-xs-offset-2"> 
+					<h4>goto</h4>
+				</div>
+				<div class="col-xs-2">
+					<button class="btn-default">tutorial</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>

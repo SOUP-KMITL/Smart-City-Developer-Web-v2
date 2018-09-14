@@ -1,0 +1,147 @@
+<header>
+	<nav class="navbar navbar-default navbar-fixed-top" style=" margin-bottom: 0">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">
+	      	<img src="images/logo.png" height="30">
+	      </a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	     
+	      <ul class="nav navbar-nav navbar-right" style="margin-right: 10px; ">
+	        <li><a href="/index">HOME </a></li>
+	        <li><a href="/architecture">ARCH </a></li>
+	        <li class="active"><a href="/service">SERVICES<span class="sr-only">(current)</span></a></li>
+	        <li><a href="/tutorial">TUTORIAL</a></li>
+	        <li><a href="/marketplace">MARKETPLACE</a></li>
+	        <li><a href="/about-us">ABOUT</a></li>
+	         <li ng-hide="!auth" uib-dropdown>
+			  <a href id="user-dropdown" uib-dropdown-toggle style="padding-left: 5px;">
+			    <img style="width: 20px; height: 20px; border-radius: 10px; margin-right: 5px;" src="{{user.thumnail == null && 'images/user-default.jpg' || user.thumnail}}">
+			    {{user.userName}}
+			    <span class="caret"></span>
+			  </a>
+			  <ul uib-dropdown-menu role="menu" aria-labelledby="user-dropdown">
+			    <li role="menuitem"><a href="/myProfile">My Profile</a></li>
+			    <li class="divider"></li>
+			    <li role="menuitem"><a href="/" ng-click="logout()">Log out</a></li>
+			  </ul>
+			</li>
+	        <button ng-hide="auth" type="button" ng-click="openModal()" class="btn btn-default navbar-btn">LOG IN</button>
+			  </ul>
+			</li>
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+</header>
+<div class="container arch">
+	<div class="row text-center">
+		<h1> OUR SERVICES</h1>
+	</div>
+	<div class="row text-center" style="margin: 5vh;">
+		<div class="col-md-4" style="margin: 1vh 0;">
+			<img class="serviceImg" src="images/services/connector.png">
+			<h3>Data Connector</h3>
+		</div>
+		<div class="col-md-4" style="margin: 1vh 0;">
+			<img class="serviceImg" src="images/services/exchange1.png">
+			<h3>Data Exchange</h3>
+		</div>
+		<div class="col-md-4" style="margin: 1vh 0;">
+			<img class="serviceImg" src="images/services/cityservice1.png">
+			<h3>City Service</h3>
+		</div>
+		<div class="col-md-4" style="margin: 1vh 0;">
+			<img class="serviceImg" src="images/services/developer.png">
+			<h3>Developer Portal</h3>
+		</div>
+		<div class="col-md-4" style="margin: 1vh 0;">
+			<img class="serviceImg" src="images/services/marketp1.png">
+			<h3>Market Place</h3>
+		</div>
+		
+		<div class="col-md-4" style="margin: 1vh 0;">
+			<img class="serviceImg" src="images/services/vis.png">
+			<h3>Data Visualization</h3>
+		</div>
+	</div>
+	<br>
+	<br>
+
+	<div class="row">
+		<div class="col-md-3 col-md-offset-2"style="height:60vh;">
+			<img class="serviceImg2" src="images/services/connector.png">
+		</div>
+		<div class="col-md-5  col-md-offset-1" style="height:60vh;">
+			<h3>Data Connector</h3>
+			<h4>เชื่อมต่อข้อมูลที่มีอยู๋เดิมของคุณเข้ากับแพลตฟอร์มของเราเพื่อให้ง่ายต่อการแบ่งปันโดยสามารถแชร์ให้ผู้อื่นเข้าถึงข้อมูลได้โดยผ่านAPI และยังสามารถทราบรายละเอียดเกี่ยวกับการใช้งานของคุณได้ เช่น ใครใช้ข้อมูลของคุณ และใช้ไปมากเท่าไหร่</h4>
+			<button type="button" class="btn btn-default1 btn-lg">tutorial</button>
+			<button type="button" class="btn btn-default1 btn-lg">let's start</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5 col-md-offset-2" style="height:60vh;" >
+			<h3>Data Exchange</h3>
+			<h4>เก็บข้อมูลที่เกิดขึ้นใหม่ไว้ที่เราเพื่อลดความกังวลเกี่ยวกับปัญหาด้านฮาร์ดแวร์ แบ่งปันแก่ผู้อื่นได้ง่ายและปลอดภัยขึ้นผ่านทาง API และยังสามารถทราบรายละเอียดเกี่ยวกับการใช้งานของคุณได้เช่นกัน</h4>
+			<button type="button" class="btn btn-default1 btn-lg">tutorial</button>
+			<button type="button" class="btn btn-default1 btn-lg">let's start</button>
+		</div>
+		<div class="col-md-3" style="height:60vh;">
+			<img class="serviceImg2" src="images/services/exchange1.png">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3 col-md-offset-2" style="height:60vh;">
+			<img class="serviceImg2" src="images/services/cityservice1.png">
+		</div>
+		<div class="col-md-5  col-md-offset-1" style="height:60vh;">
+			<h3>City Service</h3>
+			<h4>ใช้ข้อมูลที่มีอยู่อย่างมีประสิทธิภาพ โดยการอัพโหลดโค้ดหรือโปรแกรมของคุณเข้ากับแพลตฟอร์มของเรา เพื่อให้ผู้อื่นสามารถใช้ได้และใช้ทรัพยากรของเราในการประมวลผล ช่วยลดปัญหาด้านฮาร์ดแวร์ของคุณ</h4>
+			<button type="button" class="btn btn-default1 btn-lg">tutorial</button>
+			<button type="button" class="btn btn-default1 btn-lg">let's start</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5 col-md-offset-2" style="height:60vh;">
+			<h3>Developer Portal</h3>
+			<h4>ใช้บริการของเราร่วมกับบริการของคุณ ให้เราเป็นส่วนหนึ่งในการเติมเต็มงานและบริการของคุณให้สมบูรณ์มากขึ้น</h4>
+			<button type="button" class="btn btn-default1 btn-lg">tutorial</button>
+			<button type="button" class="btn btn-default1 btn-lg">let's start</button>
+		</div>
+		<div class="col-md-3" style="height:60vh;">
+			<img class="serviceImg2" src="images/services/developer.png">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3 col-md-offset-2" style="height:60vh;">
+			<img class="serviceImg2" src="images/services/marketp1.png">
+		</div>
+		<div class="col-md-5  col-md-offset-1" style="height:60vh;">
+			<h3>Market Place</h3>
+			<h4>ศูนย์รวมข้อมูลและบริการที่หลากหลายและมีประสิทธิภาพให้คุณเลือกใช้อย่างปลอดภัย</h4>
+			<button type="button" class="btn btn-default1 btn-lg">tutorial</button>
+			<button type="button" class="btn btn-default1 btn-lg">let's start</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5 col-md-offset-2" style="height:60vh;">
+			<h3>Data Visualization</h3>
+			<h4>โปรแกรมในการช่วยแสดงผลข้อมูลที่กระจัดกระจายและหลากหลายให้มาอยู๋ในที่เดียวกันเพื่อให้สามารถเห็นภาพรวมของข้อมูลได้มากขึ้น</h4>
+			<button type="button" class="btn btn-default1 btn-lg">tutorial</button>
+			<button type="button" class="btn btn-default1 btn-lg">let's start</button>
+		</div>
+		<div class="col-md-3" style="height:60vh;">
+			<img class="serviceImg2" src="images/services/vis.png">
+		</div>
+	</div>
+</div>

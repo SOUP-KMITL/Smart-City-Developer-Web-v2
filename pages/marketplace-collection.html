@@ -1,0 +1,98 @@
+<header id="top">
+	<nav class="navbar navbar-default-tr navbar-default navbar-fixed-top" style=" margin-bottom: 0">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/">
+	      	<img src="images/logo.png" height="30">
+	      </a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav navbar-right" style="margin-right: 10px; ">
+	        <li><a href="/">HOME</a></li>
+	        <li><a href="/architecture">ARCH</a></li>
+	        <li><a href="/services">SERVICES</a></li>
+	        <li uib-dropdown>
+			  <a href id="tutorial-dropdown" uib-dropdown-toggle style="padding-left: 5px;">
+			    TUTORIAL
+			    <span class="caret"></span>
+			  </a>
+			  <ul uib-dropdown-menu role="menu" aria-labelledby="tutorial-dropdown">
+			    <li role="menuitem"><a href="/tutorial/data-exchange">Data Exchange</a></li>
+			    <li role="menuitem"><a href="/tutorial/city-services">City Service</a></li>
+			    <li role="menuitem"><a href="/tutorial/connector">Connector</a></li>
+			    <li role="menuitem"><a href="/tutorial/marketplace">Marketplace</a></li>
+			    <li role="menuitem"><a href="/tutorial/developer-portal">Developer Portal</a></li>
+			    <li role="menuitem"><a href="/tutorial/visualization">Visualization</a></li>
+			  </ul>
+			</li>
+	        <li class="active"><a href="/marketplace">MARKETPLACE <span class="sr-only">(current)</span></a></li>
+	        <li><a href="/about-us">ABOUT</a></li>
+			<li ng-hide="!auth" uib-dropdown>
+			  <a href id="user-dropdown" uib-dropdown-toggle style="padding-left: 5px;">
+			    <img style="width: 20px; height: 20px; border-radius: 10px; margin-right: 5px;" src="{{user.thumbnail == null && 'images/user-default.jpg' || user.thumbnail}}">
+			    {{user.userName}}
+			    <span class="caret"></span>
+			  </a>
+			  <ul uib-dropdown-menu role="menu" aria-labelledby="user-dropdown">
+			    <li role="menuitem"><a href="/myProfile">My Profile</a></li>
+			    <li role="menuitem"><a href="/" ng-click="logout()">Log out</a></li>
+			  </ul>
+			</li>
+	        <button ng-hide="auth" type="button" ng-click="openModal()" class="btn btn-default navbar-btn">LOG IN</button>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+</header>
+<div class="container header-marketplace">
+	<div class="row">
+		<div class="col-md-5 col-md-offset-6" style="margin-top: 7vh;">
+			<h1>MARKETPLACE</h1>
+			<p>ศูนย์รวมข้อมูลและบริการที่มีประสิทธิภาพและปลอดภัย เอื้ออำนวยแก่การพัฒนานวัตกรรม</p>
+		</div>
+	</div>	
+</div>
+<br>
+<div class="container">
+	<div class="row">
+		<div class="col-md-9 col-md-offset-1">
+			<h2>Data Collection</h2>
+			<p>ข้อมูลต่างๆ ที่เป็นประโยชน์ต่อการสร้างนวัตกรรม</p>
+		</div>
+		<div class="col-md-9 col-md-offset-1">
+			<div class="row market-content" ng-repeat="collection in collections">
+				<div class="col-md-2 col-xs-4 text-center">
+					<figure class="figure">
+					  <img ng-src="{{collection.thumbnail  == null && 'images/user-default.jpg' || collection.thumbnail}}" style=" width:100%; margin-bottom: 1vh;" class="figure-img img-fluid rounded">
+					  <figcaption class="figure-caption text-center">{{collection.owner}}</figcaption>
+					</figure>
+				</div>
+				<div class="col-md-9 col-xs-4 col-xs-offset-1">
+					<div class="row">
+						<h4  class="hide-text">{{collection.collectionName}}</h4>
+						<p class="hide-text">{{collection.description}}</p>
+					</div>
+					<div class="row">
+						<div class="col-md-3 col-md-offset-9 col-xs-offset-5 text-right">
+							<button ng-click="goto('/marketplace/collection/'+collection.collectionId)" type="button" class="btn btn-default">รายละเอียด</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row text-center">
+			
+		    <ul uib-pagination class="pagination-lg" ng-change="pageChanged()" total-items="TotalItems" ng-model="CurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" force-ellipses="true"></ul>
+		</div>
+	</div>
+	
+</div>
+<br>
+<br>
+<br>

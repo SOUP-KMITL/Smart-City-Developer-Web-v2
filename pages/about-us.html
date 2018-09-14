@@ -1,0 +1,187 @@
+<header>
+	<nav class="navbar navbar-default-tr navbar-default navbar-fixed-top" style=" margin-bottom: 0">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/">
+	      	<img src="images/logo.png" height="30">
+	      </a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav navbar-right" style="margin-right: 10px; ">
+	        <li><a href="/">HOME</a></li>
+	        <li><a href="/architecture">ARCH</a></li>
+	        <li><a href="/services">SERVICES</a></li>
+	        <li uib-dropdown>
+			  <a href id="tutorial-dropdown" uib-dropdown-toggle style="padding-left: 5px;">
+			    TUTORIAL
+			    <span class="caret"></span>
+			  </a>
+			  <ul uib-dropdown-menu role="menu" aria-labelledby="tutorial-dropdown">
+			    <li role="menuitem"><a href="/tutorial/data-exchange">Data Exchange</a></li>
+			    <li role="menuitem"><a href="/tutorial/city-services">City Service</a></li>
+			    <li role="menuitem"><a href="/tutorial/connector">Connector</a></li>
+			    <li role="menuitem"><a href="/tutorial/marketplace">Marketplace</a></li>
+			    <li role="menuitem"><a href="/tutorial/developer-portal">Developer Portal</a></li>
+			    <li role="menuitem"><a href="/tutorial/visualization">Visualization</a></li>
+			  </ul>
+			</li>
+	        <li><a href="/marketplace">MARKETPLACE</a></li>
+	        <li class="active"><a href="/about-us">ABOUT <span class="sr-only">(current)</span></a></li>
+			<li ng-hide="!auth" uib-dropdown>
+			  <a href id="user-dropdown" uib-dropdown-toggle style="padding-left: 5px;">
+			    <img style="width: 20px; height: 20px; border-radius: 10px; margin-right: 5px;" src="{{user.thumbnail == null && 'images/user-default.jpg' || user.thumbnail}}">
+			    {{user.userName}}
+			    <span class="caret"></span>
+			  </a>
+			  <ul uib-dropdown-menu role="menu" aria-labelledby="user-dropdown">
+			    <li role="menuitem"><a href="/myProfile">My Profile</a></li>
+			    <li role="menuitem"><a href="/" ng-click="logout()">Log out</a></li>
+			  </ul>
+			</li>
+	        <button ng-hide="auth" type="button" ng-click="openModal()" class="btn btn-default navbar-btn">LOG IN</button>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+</header>
+<div class="container header-aboutus">
+	<div class="row">
+		<div class="col-xs-8 col-xs-offset-2" style="margin-top: 7vh;">
+			<h1>ABOUT US</h1>
+			<div class="row">
+				<div class="col-xs-4 col-xs-offset-4">
+					<img style="width: 100%;" src="images/logo.png">
+				</div>
+			</div>
+			<div class="row">
+				<h4>โครงการ Smart City Innovation Hub เป็นโครงการที่ช่วยสนับสนุนเทคโนโลยีและนวัตกรรมด้านการบริหารจัดการเมืองอัจฉริยะ ซึ่งได้มีการแบ่งประเภทเทคโนโลยีออกเป็นหลากหลายด้าน โดยทางกลุ่มมหาวิทยาลัยภายใต้การสนับสนุนของ ทปอ. ได้มีการนำเสนอโครงการพัฒนาคลาวน์แพลตฟอร์มเพื่อเป็นต้นแบบให้ทุกเมืองสามารถใช้งานร่วมกันทั้งในด้านการจัดเก็บข้อมูล พัฒนามาตรฐานในการแลกเปลี่ยนข้อมูลของเมืองระหว่างกัน เชื่อมโยงการสั่งงานผ่านระบบอัตโนมัติ(API) รวมถึงแสดงผลข้อมูลในรูปแบบที่เข้าใจง่ายต่อการบริหารจัดการ (Visualization) </h4>
+			</div>
+		</div>
+	</div>	
+</div>
+<br>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4  col-xs-8 col-md-offset-2">
+			<img class="credit-logo" style="margin-top:15px; " src="images/about-us/tpo.png">
+		</div>
+		<div class="col-md-1 col-xs-3">
+			<img class="credit-logo" src="images/about-us/cu.jpg">
+		</div>
+		<div class="col-md-3 col-xs-9">
+			<div class="col-md-6 col-xs-6">
+				<img class="credit-logo" src="images/about-us/mu.jpg">
+			</div>
+			<div class="col-md-6 col-xs-6">
+				<img class="credit-logo" src="images/about-us/kmitl.png">
+			</div>
+		</div>
+	</div>
+	<div class="row text-center"  style="margin-top: 10vh;">
+		<h1>OUR TEAM</h1>
+	</div>
+	<div class="row" style="margin-top: 40px;">
+		<div class="col-md-3 col-xs-6">
+			<div class="credit-img">
+				<img class="credit-img-inside" src="images/user-default.jpg">
+			</div>
+			<div class="credit-box">
+				<h4>Dr. Orathai Sangpetch</h4>
+				<p>Principal Investigator
+					<br/>CMKL University</p>
+			</div>
+		</div>
+		<div class="col-md-3 col-xs-6">
+			<div class="credit-img">
+				<img class="credit-img-inside" src="images/user-default.jpg">
+			</div>
+			<div class="credit-box">
+				<h4>Dr. Akkarit Sangpetch</h4>
+				<p>Consultants
+					<br/>CMKL Univercity</p>
+			</div>
+		</div>
+		<div class="col-md-3 col-xs-6">
+			<div class="credit-img">
+				<img class="credit-img-inside" src="images/user-default.jpg">
+			</div>
+			<div class="credit-box">
+				<h4>ผศ.ดร.นัทที นิภานันท์</h4>
+				<p>Principal Investigator
+					<br/>จุฬาลงกรณ์มหาวิทยาลัย</p>
+			</div>
+		</div>
+		<div class="col-md-3 col-xs-6">
+			<div class="credit-img">
+				<img class="credit-img-inside" src="images/user-default.jpg">
+			</div>
+			<div class="credit-box">
+				<h4>ดร.สรรเสริญ เจียมอนันท์กุล </h4>
+				<p>Principal Investigator
+					<br/>วิทยาลัยนานาชาติ มหาวิทยาลัยมหิดล</p>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="margin-top: 40px;">
+		<div class="col-md-3 col-xs-6">
+			<div class="credit-img">
+				<img class="credit-img-inside" src="images/user-default.jpg">
+			</div>
+			<div class="credit-box">
+				<h4>ดร.ฆนัท ตั้งวงศ์ศานต์</h4>
+				<p>Principal Investigator
+					<br/>วิทยาลัยนานาชาติ มหาวิทยาลัยมหิดล</p>
+			</div>
+		</div>
+		<div class="col-md-3 col-xs-6">
+			<div class="credit-img">
+				<img class="credit-img-inside" src="images/user-default.jpg">
+			</div>
+			<div class="credit-box">
+				<h4>ดร.วีรพงศ์ ผดุงศักดิ์อนันต์</h4>
+				<p>Principal Investigator
+					<br/>วิทยาลัยนานาชาติ มหาวิทยาลัยมหิดล</p>
+			</div>
+		</div>
+		<div class="col-md-3 col-xs-6">
+			<div class="credit-img">
+				<img class="credit-img-inside" src="images/user-default.jpg">
+			</div>
+			<div class="credit-box">
+				<h4>Parnmet Daengphruan</h4>
+				<p>Research Assistance
+					<br/>KMITL</p>
+			</div>
+		</div>
+		<div class="col-md-3 col-xs-6">
+			<div class="credit-img">
+				<img class="credit-img-inside" src="images/user-default.jpg">
+			</div>
+			<div class="credit-box">
+				<h4>Athiyut Rachatacharonechaikul</h4>
+				<p>Research Assistance
+					<br/>KMITL</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2 text-center" style="margin-top: 7vh;">
+			<h1>CONTACT US</h1>
+			<p>If you have any questions, please don't hesitate to ask us on:</p>
+			<p>
+				<span class="glyphicon glyphicon-envelope"></span>
+				support@smartcity.kmitl.io
+			</p>
+		</div>
+	</div>
+</div>
+<br>
+<br>
+<br>

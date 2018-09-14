@@ -1,0 +1,91 @@
+<header>
+	<nav class="navbar navbar-default navbar-fixed-top" style=" margin-bottom: 0">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/">
+	      	<img src="images/logo.png" height="30">
+	      </a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav navbar-right" style="margin-right: 10px; ">
+	        <li><a href="/">HOME</a></li>
+	        <li><a href="/architecture">ARCH</a></li>
+	        <li><a href="/services">SERVICES</a></li>
+	        <li uib-dropdown>
+			  <a href id="tutorial-dropdown" uib-dropdown-toggle style="padding-left: 5px;">
+			    TUTORIAL
+			    <span class="caret"></span>
+			  </a>
+			  <ul uib-dropdown-menu role="menu" aria-labelledby="tutorial-dropdown">
+			    <li role="menuitem"><a href="/tutorial/data-exchange">Data Exchange</a></li>
+			    <li role="menuitem"><a href="/tutorial/city-services">City Service</a></li>
+			    <li role="menuitem"><a href="/tutorial/connector">Connector</a></li>
+			    <li role="menuitem"><a href="/tutorial/marketplace">Marketplace</a></li>
+			    <li role="menuitem"><a href="/tutorial/developer-portal">Developer Portal</a></li>
+			    <li role="menuitem"><a href="/tutorial/visualization">Visualization</a></li>
+			  </ul>
+			</li>
+	        <li><a href="/marketplace">MARKETPLACE</a></li>
+	        <li><a href="/about-us">ABOUT</a></li>
+			<li ng-hide="!auth" uib-dropdown>
+			  <a href id="user-dropdown" uib-dropdown-toggle style="padding-left: 5px;">
+			    <img style="width: 20px; height: 20px; border-radius: 10px; margin-right: 5px;" src="{{user.thumbnail == null && 'images/user-default.jpg' || user.thumbnail}}">
+			    {{user.userName}}
+			    <span class="caret"></span>
+			  </a>
+			  <ul uib-dropdown-menu role="menu" aria-labelledby="user-dropdown">
+			    <li role="menuitem"><a href="/myProfile">My Profile</a></li>
+			    <li role="menuitem"><a href="/" ng-click="logout()">Log out</a></li>
+			  </ul>
+			</li>
+	        <button ng-hide="auth" type="button" ng-click="openModal()" class="btn btn-default navbar-btn">LOG IN</button>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+</header>
+<div class="container service-detail">
+	<div class="row">
+		<div class="col-md-4">
+			<a style="color: #41557b;" ng-href="/marketplace/collection"> 
+				<h2>< DATA COLLECTION</h2>
+			</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3 col-md-offset-2 service-name">
+			<div class="row text-center">
+				<h3>{{collection.collectionName}}</h3>
+				<img style="height: 20vh; width: 60%; margin-bottom: 2vh;" src="{{collection.thumbnail == null && 'images/user-default.jpg' || collection.thumbnail}}">
+				<p>Onwer : {{collection.owner}}</p>
+				<p>Date : {{collection.createdAt | date: 'longDate'}}</p>
+				<p>Category : {{collection.category}}</p>
+				<p>Status : {{collection.isOpen}}</p>
+			</div>
+		</div>
+		<div class="col-md-5">
+			<div class="row light-blue">
+				<h4>Collection ID:</h4>
+				<p>{{collection.collectionId}}</p>
+			</div>
+			<div class="row dark-blue">
+				<h4>Description:</h4>
+				<p>{{collection.description}}</p>
+			</div>
+			<div class="row light-blue">
+				<h4>Sample API:</h4>
+				<pre style="height: 200px; white-space: pre-wrap;" >{{collection.example}}</pre>
+			</div>
+			<div class="row dark-blue">
+				<h4>Category:</h4>
+				<p>{{collection.category}}</p>
+			</div>
+		</div>
+	</div>
+</div>

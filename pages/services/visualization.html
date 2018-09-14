@@ -1,0 +1,118 @@
+<header>
+	<nav class="navbar navbar-default navbar-fixed-top" style=" margin-bottom: 0">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/">
+	      	<img src="images/logo.png" height="30">
+	      </a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav navbar-right" style="margin-right: 10px; ">
+	        <li><a href="/">HOME</a></li>
+	        <li><a href="/architecture">ARCH</a></li>
+	        <li><a href="/services">SERVICES</a></li>
+	        <li uib-dropdown>
+			  <a href id="tutorial-dropdown" uib-dropdown-toggle style="padding-left: 5px;">
+			    TUTORIAL
+			    <span class="caret"></span>
+			  </a>
+			  <ul uib-dropdown-menu role="menu" aria-labelledby="tutorial-dropdown">
+			    <li role="menuitem"><a href="/tutorial/data-exchange">Data Exchange</a></li>
+			    <li role="menuitem"><a href="/tutorial/city-services">City Service</a></li>
+			    <li role="menuitem"><a href="/tutorial/connector">Connector</a></li>
+			    <li role="menuitem"><a href="/tutorial/marketplace">Marketplace</a></li>
+			    <li role="menuitem"><a href="/tutorial/developer-portal">Developer Portal</a></li>
+			    <li role="menuitem"><a href="/tutorial/visualization">Visualization</a></li>
+			  </ul>
+			</li>
+	        <li><a href="/marketplace">MARKETPLACE</a></li>
+	        <li><a href="/about-us">ABOUT</a></li>
+			<li ng-hide="!auth" uib-dropdown>
+			  <a href id="user-dropdown" uib-dropdown-toggle style="padding-left: 5px;">
+			    <img style="width: 20px; height: 20px; border-radius: 10px; margin-right: 5px;" src="{{user.thumbnail == null && 'images/user-default.jpg' || user.thumbnail}}">
+			    {{user.userName}}
+			    <span class="caret"></span>
+			  </a>
+			  <ul uib-dropdown-menu role="menu" aria-labelledby="user-dropdown">
+			    <li role="menuitem"><a href="/myProfile">My Profile</a></li>
+			    <li role="menuitem"><a href="/" ng-click="logout()">Log out</a></li>
+			  </ul>
+			</li>
+	        <button ng-hide="auth" type="button" ng-click="openModal()" class="btn btn-default navbar-btn">LOG IN</button>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+</header>
+<div class="container arch">
+	<div class="row text-center">
+		<h1>Visualization</h1>
+	</div>
+	<div class="row" style="margin: 5vh 0;">
+		<div class="col-md-5 col-md-offset-1">
+			<h2>Visualize your data to our 3D Maps.</h2>
+			<p>
+				ระบบแสดงผลข้อมูลที่ช่วยแก้ปัญหาข้อมูลกระจัดกระจายและเข้าใจได้ยาก ให้ผู้ใช้สามารถเข้าใจข้อมูลและมองเห็นภาพรวมระหว่างข้อมูลต่างๆได้ง่ายขึ้น รวมถึงรองรับข้อมูลที่อาจมีเพิ่มเข้ามาในอนาคต โดยระบบจะนำข้อมูลที่เพิ่มเข้ามามาแสดงผลร่วมกับข้อมูลพื้นฐานที่มีอยู่ โดยการแสดงผลข้อมูลใหม่ สามารถใช้งานรูปแบบการแสดงผลที่มีอยู่แล้วก่อนหน้ามาประยุกต์ใช้ได้ เพื่อให้ผู้ใช้ระบบง่ายต่อการนำไปใช้งาน และใช้ประโยชน์จากข้อมูลนั้นอย่างสูงสุด
+
+			</p>
+		</div>
+		<div class="col-md-4 hidden-xs" style="margin-top: 7vh;">
+			<img class="serviceImg2" src="images/services/vis.png">
+		</div>
+		<div class="col-md-9 col-md-offset-1">
+			<p>
+				ระบบแสดงผลข้อมูลที่ได้จัดทำขึ้นนั้นมีด้วยกันทั้งสิ้น  รูปแบบ คือ
+			</p>
+			<p  style="margin-left: 2vw;">
+				1. Desktop Application
+			</p>
+			<p  style="margin-left: vw;">
+				ผู้ใช้สามารถเพิ่มข้อมูลลงในระบบเพื่อแสดงผลข้อมูลบนแผนที่ 3 มิติที่ระบบได้มีการจัดเตรียมไว้ให้ และระบบจะเลือกรูปแบบการแสดงผลจากข้อมูลที่ได้รับโดยอ้างอิงจากหลักสถิติ
+			</p>
+			<p  style="margin-left: 2vw;">
+				2. Virtual Reality Application
+			</p>
+			<p  style="margin-left: vw;">
+				ผู้ใช้งานสามารถเลือกดูข้อมูลในรูปแบบ VR มีแอพพลิเคชั่นที่สามารถใช้งานบน HoloLens และแอพพลิเคชั่นสำหรับใช้งานบน iPad 
+			</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-9 col-md-offset-1">
+			<h2>DOWNLOAD NOW</h2>
+			<p  style="margin-left: 2vw;">Windows Desktop Application<a href="#"> click here</a>
+			</p>
+			<p  style="margin-left: 2vw;">IOS Application<a href="#"> click here</a>
+			</p>
+			<p  style="margin-left: 2vw;">HoloLens Application<a href="#"> click here</a>
+			</p>
+			<p  style="margin-left: 2vw;">iPad Application<a href="#"> click here</a>
+			</p>
+		</div>
+	</div>
+	<br/>
+	<br/>
+	<br/>
+	<div class="row">
+		<div class="col-md-9 col-md-offset-1">
+			<h2>ADDITIONAL RESOURCES</h2>
+			<br/>
+			<br/>
+			<div class="row text-center">
+				<div class="col-xs-2 col-xs-offset-2"> 
+					<h4>goto</h4>
+				</div>
+				<div class="col-xs-2">
+					<button class="btn-default">tutorial</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>

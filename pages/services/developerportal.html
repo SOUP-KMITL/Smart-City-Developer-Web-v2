@@ -1,0 +1,132 @@
+<header>
+	<nav class="navbar navbar-default navbar-fixed-top" style=" margin-bottom: 0">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/">
+	      	<img src="images/logo.png" height="30">
+	      </a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav navbar-right" style="margin-right: 10px; ">
+	        <li><a href="/">HOME</a></li>
+	        <li><a href="/architecture">ARCH</a></li>
+	        <li><a href="/services">SERVICES</a></li>
+	        <li uib-dropdown>
+			  <a href id="tutorial-dropdown" uib-dropdown-toggle style="padding-left: 5px;">
+			    TUTORIAL
+			    <span class="caret"></span>
+			  </a>
+			  <ul uib-dropdown-menu role="menu" aria-labelledby="tutorial-dropdown">
+			    <li role="menuitem"><a href="/tutorial/data-exchange">Data Exchange</a></li>
+			    <li role="menuitem"><a href="/tutorial/city-services">City Service</a></li>
+			    <li role="menuitem"><a href="/tutorial/connector">Connector</a></li>
+			    <li role="menuitem"><a href="/tutorial/marketplace">Marketplace</a></li>
+			    <li role="menuitem"><a href="/tutorial/developer-portal">Developer Portal</a></li>
+			    <li role="menuitem"><a href="/tutorial/visualization">Visualization</a></li>
+			  </ul>
+			</li>
+	        <li><a href="/marketplace">MARKETPLACE</a></li>
+	        <li><a href="/about-us">ABOUT</a></li>
+			<li ng-hide="!auth" uib-dropdown>
+			  <a href id="user-dropdown" uib-dropdown-toggle style="padding-left: 5px;">
+			    <img style="width: 20px; height: 20px; border-radius: 10px; margin-right: 5px;" src="{{user.thumbnail == null && 'images/user-default.jpg' || user.thumbnail}}">
+			    {{user.userName}}
+			    <span class="caret"></span>
+			  </a>
+			  <ul uib-dropdown-menu role="menu" aria-labelledby="user-dropdown">
+			    <li role="menuitem"><a href="/myProfile">My Profile</a></li>
+			    <li role="menuitem"><a href="/" ng-click="logout()">Log out</a></li>
+			  </ul>
+			</li>
+	        <button ng-hide="auth" type="button" ng-click="openModal()" class="btn btn-default navbar-btn">LOG IN</button>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+</header>
+<div class="container arch">
+	<div class="row text-center">
+		<h1>DEVELOPER PORTAL</h1>
+	</div>
+	<div class="row" style="margin: 5vh 0;">
+		<div class="col-md-5 col-md-offset-1">
+			<h2>Connect to our services through APIs. Build your own great things with our services.</h2>
+			<p>
+				ระบบ developer portal ถูกสร้างขึ้น เพื่อให้ผู้ใช้งานสามารถเชื่อมต่อกับระบบ Integrated Smart City Cloud Platform ได้อย่างง่ายขึ้น โดย เชื่อมต่อผ่าน APIs ที่ทางคณะผู้จัดทำได้มีการจัดเตรียมไว้ ทั้งนี้ผู้ใช้งานสามารถ สร้างการเชื่อมต่อเพื่อเก็บข้อมูล หรือใช้งานข้อมูลในการ สร้าง Service หรือแอพพลิเคชั่นของตนเอง เพื่อความสะดวกในการใช้งาน และงานต่อการขยายโมเดลในอนาคต
+
+			</p>
+		</div>
+		<div class="col-md-4" style="margin-top: 7vh;">
+			<img class="serviceImg2" src="images/services/developer.png">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-9 col-md-offset-1">
+			<h2>Services</h2>
+			<div class="row text-center text-middle">
+				<div class="col-md-5  light-blue">
+					<div class="col-md-7">
+						<h4>
+						Data Exchange
+						</h4>
+					</div>
+					<button class="col-md-5 swagger-btn" ng-click="goout('https://api.smartcity.kmitl.io/api/v1/doc/data-exchange/')">
+						<p style="margin: 0;"> <img class="swagger-btn-img" src="images/button/swagger-icon.png">
+						Swagger</p>
+					</button>
+				</div>
+			</div>
+			<div class="row text-center text-middle">
+				<div class="col-md-5  light-blue">
+					<div class="col-md-7">
+						<h4>
+						Service Platform
+						</h4>
+					</div>
+					<button class="col-md-5 swagger-btn" ng-click="goout('https://api.smartcity.kmitl.io/api/v1/doc/city-service-platform/')">
+						<p style="margin: 0;"> <img class="swagger-btn-img" src="images/button/swagger-icon.png">
+						Swagger</p>
+					</button>
+				</div>
+			</div>
+			<div class="row text-center text-middle">
+				<div class="col-md-5  light-blue">
+					<div class="col-md-7">
+						<h4>
+						Connector
+						</h4>
+					</div>
+					<button class="col-md-5 swagger-btn" ng-click="goout('https://api.smartcity.kmitl.io/api/v1/doc/smartcity-data-api/')">
+						<p style="margin: 0;"> <img class="swagger-btn-img" src="images/button/swagger-icon.png">
+						Swagger</p>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br/>
+	<br/>
+	<br/>
+	<div class="row">
+		<div class="col-md-9 col-md-offset-1">
+			<h2>ADDITIONAL RESOURCES</h2>
+			<br/>
+			<br/>
+			<div class="row text-center">
+				<div class="col-xs-2 col-xs-offset-2"> 
+					<h4>goto</h4>
+				</div>
+				<div class="col-xs-2">
+					<button class="btn-default">tutorial</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
