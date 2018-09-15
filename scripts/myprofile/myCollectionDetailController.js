@@ -2,6 +2,25 @@ angular
 	.module('DevelopersApp')
 	.controller('myCollectionDetailController',function($route,$routeParams,$uibModal,$interval,$location,$scope,$rootScope,$http,DevelopersFactory,AuthenticationService){
         $scope.stop2 = $interval(function(){ $route.reload();},360000);
+        $scope.delete = function(){
+            $uibModal.open({
+                templateUrl: 'pages/modal.html',
+                controller: function ($scope, $uibModalInstance) {
+                    $scope.title = "deleting your collection"
+                    $scope.dataLoading = true;
+                    DevelopersFactory.deleteCollection($routeParams.id)
+                    .then(function(data){
+                        $uibModalInstance.close();
+                        $location.path('/myProfile/collection');
+                    },
+                    function(error){
+                        console.log(error);
+                        $scope.error = error.data.message;
+                        $scope.dataLoading = false;
+                    });
+                }
+            });
+        }
         $scope.goto = function(url){
             $location.path(url);
         }
@@ -43,6 +62,28 @@ angular
 		      }
 		    })
 		};
+        DevelopersFactory.getrole($routeParams.id,function(response){
+            $scope.owners = response.owners;
+            $scope.contrs = response.contrs;
+            $scope.reads = response.reads;
+            console.log(response);
+        });
+        DevelopersFactory.meterCollection($routeParams.id,function(response){
+
+            $scope.read = response.read;
+            $scope.write = response.write;
+            console.log(response);
+        });
+
+        DevelopersFactory.amService(AuthenticationService.getuser().data.userName,function(response){
+            $scope.servicesTotalElements = response.data;
+            // console.log(response);
+        });
+        DevelopersFactory.amCollection(AuthenticationService.getuser().data.userName,function(response){
+            $scope.collectionsTotalElements = response.data;
+            // console.log(response);
+        });
+        
         DevelopersFactory.getCollectionByID($routeParams.id)
         .then(function(data){
             $scope.collection = data.data;

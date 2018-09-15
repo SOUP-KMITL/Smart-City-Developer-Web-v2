@@ -9,7 +9,29 @@ angular
 		function getCollection() {
 			return $http.get('https://api.smartcity.kmitl.io/api/v1/collections');
 		};
-				
+		function amService(username,callback) {
+			var response = {success : false}
+			$http.get('https://api.smartcity.kmitl.io/api/v1/services?owner='+username)
+			.then(function(data){
+				response.success = true;
+				response.data = data.data.totalElements;
+				callback(response);
+			},function(error){
+				callback(response);
+			});
+		};
+
+		function amCollection(username,callback) {
+			var response = {success : false}
+			$http.get('https://api.smartcity.kmitl.io/api/v1/collections?owner='+username)
+			.then(function(data){
+				response.success = true;
+				response.data = data.data.totalElements;
+				callback(response);
+			},function(error){
+				callback(response);
+			});
+		};
 		function getMyService(username) {
 			return $http.get('https://api.smartcity.kmitl.io/api/v1/services?owner='+username);
 		};		
@@ -97,7 +119,7 @@ angular
 		function getowner(){
 			return owner;
 		}
-		function createCityService(name,des,callback){
+		function createCityService(name,des){
 			var data = {serviceName: name,description: des};
 			var req = {
                	method: 'POST',
@@ -123,7 +145,80 @@ angular
            	}
         	return $http(req);	
 		}
+		function deleteService(id){
+			var req = {
+               	method: 'DELETE',
+               	url: 'https://api.smartcity.kmitl.io/api/v1/services/'+id
+           	}
+        	return $http(req);	
+		}
+		function deleteCollection(id){
+			var req = {
+               	method: 'DELETE',
+               	url: 'https://api.smartcity.kmitl.io/api/v1/collections/'+id
+           	}
+        	return $http(req);	
+		}
+		function meterCollection(id,callback){
+			var req = {
+				method: 'GET',
+				url: 'https://api.smartcity.kmitl.io/api/v1/meters/collections?collectionId='+id+'&aggregate=true'
+			}
+        	var response = {success : false,read : 0,write:0}
+        	$http(req)
+			.then(function(data){
+				console.log(data);
+				for(var i=0;i<data.data.length;i++){
+					if(data.data[i].type = "read"){
+						response.read = data.data[i].size;
+					}
+					else if(data.data[i].type = "write"){
+						response.write = data.data[i].size;
+					}
+				}
+				response.success = true;
+				callback(response);
+			},function(error){
+				response.read = error.statusText;
+				response.write = error.statusText;
+				callback(response);
+			});
+		}
+		function getrole(id,callback){
+			
+			var req = {
+				method: 'GET',
+				url: 'https://api.smartcity.kmitl.io/api/v1/accesscontrol?collectionId='+id
+			}
+        	var response = {success : false,owners : [] ,contrs :[] ,reads:[]}
+        	$http(req)
+			.then(function(data){
+				console.log(data);
+				console.log(data.data.length);
+				for(var i=0;i<data.data.length;i++){
+					if(data.data[i].role == "owner"){
+						response.owners.push(data.data[i].user_name)
+					}
+					else if(data.data[i].role == "contributor"){
+						response.contrs.push(data.data[i].user_name)
+					}
+					else if(data.data[i].role == "read"){
+						response.reads.push(data.data[i].user_name)
+					}
+				}
+				response.success = true;
+				callback(response);
+			},function(error){
+				response.read = error.statusText;
+				response.write = error.statusText;
+				callback(response);
+			});
+		}
 		return {
+			getrole: getrole,
+			meterCollection: meterCollection,
+			deleteCollection: deleteCollection,
+			deleteService: deleteService,
 			updateThunbnail: updateThunbnail,
 			createCityService: createCityService,
 			getCollectionGraph: getCollectionGraph,
@@ -135,6 +230,8 @@ angular
 			getMyCollection: getMyCollection,
 			getService: getService,
 			getCollection: getCollection,
+			amService: amService,
+			amCollection: amCollection,
 			getServiceByID: getServiceByID,
 			getCollectionByID: getCollectionByID,
 			savedata: savedata,

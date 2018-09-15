@@ -62,7 +62,7 @@
 		<div class="col-md-3 col-md-offset-2 service-name">
 			<div class="row text-center">
 				<h3>{{collection.collectionName}}</h3>
-				<img style="height: 20vh; width: 60%; margin-bottom: 2vh;" src="{{collection.thumbnail == null && 'images/user-default.jpg' || collection.thumbnail}}">
+				<img style="width: 60%; margin-bottom: 2vh;" src="{{collection.thumbnail == null && 'images/empty-image.png' || collection.thumbnail}}">
 				<p>Onwer : {{collection.owner}}</p>
 				<p>Date : {{collection.createdAt | date: 'longDate'}}</p>
 				<p>Category : {{collection.category}}</p>

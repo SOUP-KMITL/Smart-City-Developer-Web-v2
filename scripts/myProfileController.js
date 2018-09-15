@@ -10,7 +10,9 @@ angular
 				      	$scope.dataLoading = true;
 				        userService.genAccessToken(AuthenticationService.getuser().data.userName, password, function(response) {
 				            if(response.success) {
+				                $scope.dataLoading = false;
 				                $scope.token = response.data;
+				                $scope.error = false;
 				            } 
 				            else {
 				            	console.log(response);
@@ -41,9 +43,18 @@ angular
 			AuthenticationService.ClearCredentials();
 			$location.path("/");
 		}
-		//DevelopersFactory.getMyService(AuthenticationService.getuser().data.userName,0,3)
+		DevelopersFactory.amService(AuthenticationService.getuser().data.userName,function(response){
+			$scope.servicesTotalElements = response.data;
+			console.log(response);
+		});
+		DevelopersFactory.amCollection(AuthenticationService.getuser().data.userName,function(response){
+			$scope.collectionsTotalElements = response.data;
+			console.log(response);
+		});
+		
 		DevelopersFactory.getMyService(AuthenticationService.getuser().data.userName)
 		.then(function(data){
+			// $scope.servicesTotalElements = data.data.totalElements;
 			$scope.services = data.data.content;
 			console.log(data);
 		},
@@ -53,6 +64,7 @@ angular
 		DevelopersFactory.getMyCollection(AuthenticationService.getuser().data.userName)
 		.then(function(data){
 			console.log(data);
+			// $scope.collectionsTotalElements = data.data.totalElements;
 			$scope.collections = data.data.content;
 		},
 		function(error){

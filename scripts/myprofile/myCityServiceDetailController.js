@@ -1,7 +1,26 @@
 angular
 	.module('DevelopersApp')
 	.controller('myCityServiceDetailController',function($routeParams,$uibModal,$anchorScroll,$location,$scope,$http,DevelopersFactory,AuthenticationService){
-	
+		
+		$scope.delete = function(){
+		    $uibModal.open({
+		      	templateUrl: 'pages/modal.html',
+		      	controller: function ($scope, $uibModalInstance) {
+		      		$scope.title = "deleting city service"
+			        $scope.dataLoading = true;
+					DevelopersFactory.deleteService($routeParams.id)
+					.then(function(data){
+						$uibModalInstance.close();
+						$location.path('/myProfile/city-service');
+					},
+					function(error){
+						console.log(error);
+		                $scope.error = response.message;
+		                $scope.dataLoading = false;
+					});
+			    }
+		    });
+		}
         $scope.goto = function(url){
             $location.path(url);
         }
@@ -45,6 +64,15 @@ angular
 		    })
 		};
 
+		
+		DevelopersFactory.amService(AuthenticationService.getuser().data.userName,function(response){
+			$scope.servicesTotalElements = response.data;
+			console.log(response);
+		});
+		DevelopersFactory.amCollection(AuthenticationService.getuser().data.userName,function(response){
+			$scope.collectionsTotalElements = response.data;
+			console.log(response);
+		});
 		
  		DevelopersFactory.getServiceByID($routeParams.id)
 		.then(function(data){

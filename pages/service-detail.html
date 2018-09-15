@@ -62,7 +62,7 @@
 		<div class="col-md-3 col-md-offset-2" style="border-radius: 10px;">
 			<div class="row text-center service-name">
 				<h3>{{service.serviceName}}</h3>
-				<img style="height: 20vh; width: 60%; margin-bottom: 2vh;" ng-src="{{service.thumbnail == null && 'images/user-default.jpg' || service.thumbnail}}">
+				<img style="width: 60%; margin-bottom: 2vh;" ng-src="{{service.thumbnail == null && 'images/empty-image.png' || service.thumbnail}}">
 				<p>Owner : {{service.owner}}</p>
 				<p>Last update : {{service.updatedAt*1000 | date: 'longDate'}}</p>
 			</div>

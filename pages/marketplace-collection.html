@@ -1,4 +1,4 @@
-<header id="top">
+<header>
 	<nav class="navbar navbar-default-tr navbar-default navbar-fixed-top" style=" margin-bottom: 0">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
@@ -67,23 +67,25 @@
 		</div>
 		<div class="col-md-9 col-md-offset-1">
 			<div class="row market-content" ng-repeat="collection in collections">
-				<div class="col-md-2 col-xs-4 text-center">
-					<figure class="figure">
-					  <img ng-src="{{collection.thumbnail  == null && 'images/user-default.jpg' || collection.thumbnail}}" style=" width:100%; margin-bottom: 1vh;" class="figure-img img-fluid rounded">
-					  <figcaption class="figure-caption text-center">{{collection.owner}}</figcaption>
-					</figure>
-				</div>
-				<div class="col-md-9 col-xs-4 col-xs-offset-1">
-					<div class="row">
-						<h4  class="hide-text">{{collection.collectionName}}</h4>
-						<p class="hide-text">{{collection.description}}</p>
+				<a ng-href="/marketplace/collection/{{collection.collectionId}}">
+					<div class="col-md-2 col-xs-4 text-center">
+						<figure class="figure">
+						  <img ng-src="{{collection.thumbnail  == null && 'images/empty-image.png' || collection.thumbnail}}" style=" width:100%; margin-bottom: 1vh;" class="figure-img img-fluid rounded">
+						  <figcaption class="figure-caption text-center">{{collection.owner}}</figcaption>
+						</figure>
 					</div>
-					<div class="row">
-						<div class="col-md-3 col-md-offset-9 col-xs-offset-5 text-right">
-							<button ng-click="goto('/marketplace/collection/'+collection.collectionId)" type="button" class="btn btn-default">รายละเอียด</button>
+					<div class="col-md-9 col-xs-4 col-xs-offset-1">
+						<div class="row">
+							<h4  class="hide-text">{{collection.collectionName}}</h4>
+							<p class="hide-text">{{collection.description}}</p>
+						</div>
+						<div class="row">
+							<div class="col-md-3 col-md-offset-9 col-xs-offset-5 text-right">
+								<button ng-click="goto('/marketplace/collection/'+collection.collectionId)" type="button" class="btn btn-default">รายละเอียด</button>
+							</div>
 						</div>
 					</div>
-				</div>
+				</a>
 			</div>
 		</div>
 		<div class="row text-center">

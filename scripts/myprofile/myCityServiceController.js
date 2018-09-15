@@ -45,7 +45,7 @@ angular
 		    })
 		};
 
-		  $scope.pageChanged = function() {
+		$scope.pageChanged = function() {
 			DevelopersFactory.getPageService($scope.CurrentPage-1,10)
 			.then(function(data){
 				console.log($scope.CurrentPage);
@@ -57,8 +57,17 @@ angular
 			function(error){
 				console.log(error);
 			});
-		  };
+		};
 
+		DevelopersFactory.amService(AuthenticationService.getuser().data.userName,function(response){
+			$scope.servicesTotalElements = response.data;
+			console.log(response);
+		});
+		DevelopersFactory.amCollection(AuthenticationService.getuser().data.userName,function(response){
+			$scope.collectionsTotalElements = response.data;
+			console.log(response);
+		});
+		
 		DevelopersFactory.getMyPageService(AuthenticationService.getuser().data.userName,0,10)
 		.then(function(data){
 			$scope.services = data.data.content;

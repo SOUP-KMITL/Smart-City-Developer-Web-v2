@@ -26,13 +26,15 @@ nav{
 	width: 100%;
 }
 a{
-	font-family: 'rsuBold';
+	/*font-family: 'rsuBold';*/
+	font-family: 'Athiti', sans-serif;
+	font-weight: 600;
 	color: #41557b;
-
-
 }
 body{
-	font-family: 'rsuReg';
+	/*font-family: 'rsuReg';*/
+	font-family: 'Athiti', sans-serif;
+	font-weight: 400;
 	color: #41557b;
 	background-image: url("images/bg3.png");
 	background-size: 100% auto;
@@ -142,7 +144,6 @@ header{
 	margin-top: 10vh;
 }
 .myProfile-box{
-	margin-top: 25px;
 	padding: 20px;
 	text-align: center;
 	border-radius: 5px;
@@ -169,6 +170,17 @@ header{
 	border:1px solid gray;
 	margin-top: 20px;
 	
+}
+.role{
+	border-radius: 10px; 
+	background-color: white; 
+	color: #41557b
+}
+.role-header{
+	margin-top: 15px;
+	border-radius: 10px; 
+	background-color: #41557b; 
+	color: white
 }
 .service{
 	text-align: center;
@@ -266,30 +278,40 @@ header{
 	background-color: Transparent;
 }
 h1{
-   font-family: 'rsuBold';
-   font-size: 45px;
+   /*font-family: 'rsuBold';*/
+   	font-family: 'Athiti', sans-serif;
+	font-weight: 600;
+   	font-size: 45px;
 
 
 }
 h2{
-   font-family: 'rsuBold';
+   /*font-family: 'rsuBold';*/
+   font-family: 'Athiti', sans-serif;
+	font-weight: 600;
    font-size: 32px;
 
 
 }
 h3{
-   font-family: 'rsuBold';
+   /*font-family: 'rsuBold';*/
+   font-family: 'Athiti', sans-serif;
+	font-weight: 600;
    font-size: 28px;
 
 
 }
 h4{
-   font-family: 'rsuReg';
+   /*font-family: 'rsuReg';*/
+   font-family: 'Athiti', sans-serif;
+	font-weight: 400;
    font-size: 21px;
    
 }
 p{
-   font-family: 'rsuLight';
+   /*font-family: 'rsuLight';*/
+   font-family: 'Athiti', sans-serif;
+	font-weight: 300;
    font-size: 18px;
    
 }

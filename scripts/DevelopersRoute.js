@@ -123,7 +123,7 @@ angular
 	        controller: "createCityServiceController"
 	    })
 	    .when("/myProfile/edit/city-service/:id", {
-	        templateUrl : "pages/create/create-service-b.html",
+	        templateUrl : "pages/edit/edit-service-b.html",
 	        controller: "editCityServiceController"
 	    })
 	    .when("/myProfile/create/collection", {
@@ -131,7 +131,7 @@ angular
 	        controller: "createCollectionController"
 	    })
 	    .when("/myProfile/edit/collection/:id", {
-	        templateUrl : "pages/create/create-collection-b.html",
+	        templateUrl : "pages/edit/edit-collection-b.html",
 	        controller: "editCollectionController"
 	    })
 	    .when("/myProfile/city-service/:id", {

@@ -6,7 +6,8 @@
 
 <div class="modal-body">
     <div ng-show="error" class="alert alert-danger">{{error}}</div>
-	<form>
+    <div ng-show="token" class="alert alert-success">{{token}}</div>
+	<form ng-hide="token">
 	    <div class="form-group">
 	        <label for="password">Password</label>
 	        <input type="password" id="password" class="form-control" ng-model="password" />

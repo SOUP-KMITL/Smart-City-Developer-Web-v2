@@ -57,6 +57,15 @@ angular
 			});
 		  };
 
+		DevelopersFactory.amService(AuthenticationService.getuser().data.userName,function(response){
+			$scope.servicesTotalElements = response.data;
+			console.log(response);
+		});
+		DevelopersFactory.amCollection(AuthenticationService.getuser().data.userName,function(response){
+			$scope.collectionsTotalElements = response.data;
+			console.log(response);
+		});
+		
 		DevelopersFactory.getMyPageCollection(AuthenticationService.getuser().data.userName,0,10)
 		.then(function(data){
 			console.log(data);

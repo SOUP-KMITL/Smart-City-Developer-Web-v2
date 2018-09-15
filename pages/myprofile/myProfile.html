@@ -52,31 +52,29 @@
 </header>
 <div class="container myProfile">
 	<div class="row">
-		<div class="col-md-1 hidden-xs" style="padding-left:50px;">
-			<h1 class="vt-profile" >MY PROFILE</h1>
-		</div>
-		<div class="col-md-3 col-xs-8 col-xs-offset-2 col-md-offset-0 myProfile-box">
-			<div class="row">
+		<div class="col-md-3 col-xs-8 col-xs-offset-2 col-md-offset-0">
+			<h1>MY PROFILE</h1>
+			<div class="row myProfile-box">
 				<div class="col-xs-8 col-xs-offset-2">
 					<div class="row">
 						<img class="profile-img" src="{{user.thumbnail == null && 'images/user-default.jpg' || user.thumbnail}}">
 					</div>
 					<div class="row">
 						<h3>{{user.userName}}</h3>
-						<!-- <div style="text-align: left;">	
-							<p><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Credit:</p>
-							<p><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Data Collections:</p>
-							<p><span class="glyphicon glyphicon-star" aria-hidden="true"></span>City Services:</p>
-						</div> -->
 						<p><button class="btn-default" ng-click="gentoken()">genaccess token</button></p>
-						<p><button class="btn-default" ng-click="goto('/myProfile/city-service')">my city service</button></p>
-						<p><button class="btn-default" ng-click="goto('/myProfile/collection')">my data collection</button></p>
+						<div style="text-align: left;">	
+							<!-- <p><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Credit:</p> -->
+							<p><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Data Collections: {{collectionsTotalElements}}</p>
+							<p><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> City Services: {{servicesTotalElements}}</p>
+						</div>
+						<!-- <p><button class="btn-default" ng-click="goto('/myProfile/city-service')">my city service</button></p>
+						<p><button class="btn-default" ng-click="goto('/myProfile/collection')">my data collection</button></p> -->
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-12 col-md-8">
-			<div style="padding:0 60px;">
+		<div class="col-xs-12 col-md-8  col-md-offset-1">
+			<div style="">
 				<div class="row">
 					<h1>MONITORING</h1>
 				</div>
@@ -87,7 +85,7 @@
 								<div class="box-number">
 									<h1>3</h1>
 								</div>
-								<p> tickets were generated from your data collections.</p>
+								<p>  data collections.</p>
 								<button class="btn-default"> more details</button>
 							</div>
 						</div>
@@ -146,7 +144,7 @@
 			<div class="row market-content" ng-repeat="service in services | limitTo : 3">
 				<div class="col-md-2 col-xs-4 text-center">
 					<figure class="figure">
-					  <img ng-src="{{service.thumbnail  == null && 'images/user-default.jpg' || service.thumbnail}}" style="width:100%; margin-bottom: 1vh;" class="figure-img img-fluid rounded">
+					  <img ng-src="{{service.thumbnail  == null && 'images/empty-image.png' || service.thumbnail}}" style="width:100%; margin-bottom: 1vh;" class="figure-img img-fluid rounded">
 					  <figcaption class="figure-caption text-center">{{service.owner}}</figcaption>
 					</figure>
 				</div>
@@ -171,10 +169,10 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-5">
+		<div class="col-md-6">
 			<h1>MY DATA COLLECTIONS</h1>
 		</div>
-		<div class="col-md-2 col-md-offset-4">
+		<div class="col-md-2 col-md-offset-3">
 			<h1>
 				<button ng-click="goto('/myProfile/create/collection')" class="btn btn-default2 btn-sm">
 					CREATE NEW
@@ -185,7 +183,7 @@
 			<div class="row market-content" ng-repeat="collection in collections | limitTo : 3">
 				<div class="col-md-2 col-xs-4 text-center">
 					<figure class="figure">
-					  <img ng-src="{{collection.thumbnail  == null && 'images/user-default.jpg' || collection.thumbnail}}" style=" width:100%; margin-bottom: 1vh;" class="figure-img img-fluid rounded">
+					  <img ng-src="{{collection.thumbnail  == null && 'images/empty-image.png' || collection.thumbnail}}" style=" width:100%; margin-bottom: 1vh;" class="figure-img img-fluid rounded">
 					  <figcaption class="figure-caption text-center">{{collection.owner}}</figcaption>
 					</figure>
 				</div>

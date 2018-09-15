@@ -65,7 +65,8 @@
                     authdata: authdata
                 }
             };
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; 
+            // $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; 
+            $http.defaults.headers.common['Authorization'] = getuser().data.accessToken;
             $cookies.putObject('globals', $rootScope.globals);
             $location.path('/myProfile');
             
