@@ -1,6 +1,6 @@
 angular
 	.module('DevelopersApp')
-	.run(function($rootScope, $location, $cookies, $http) {
+	.run(function(AuthenticationService,$rootScope, $location, $cookies, $http) {
  // keep user logged in after page refresh
         console.log("app.run");
         try{
@@ -11,7 +11,7 @@ angular
         }
 
         if ($rootScope.globals.currentUser) {
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; 
+            $http.defaults.headers.common['Authorization'] = AuthenticationService.getuser().data.accessToken;; 
         }
 
 

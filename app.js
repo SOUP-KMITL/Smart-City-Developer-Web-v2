@@ -1,1 +1,1 @@
-angular.module('DevelopersApp',['AngularChart','ngAnimate', 'ngSanitize','ui.bootstrap','ngRoute','ngCookies','base64']);
+angular.module('DevelopersApp',['ngclipboard','AngularChart','ngAnimate', 'ngSanitize','ui.bootstrap','ngRoute','ngCookies','base64']);

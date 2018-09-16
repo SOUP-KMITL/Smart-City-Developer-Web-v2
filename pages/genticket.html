@@ -1,0 +1,26 @@
+<div class="modal-header">
+    <h3 class="modal-title">
+    	Generate Ticket
+	</h3>
+</div>
+
+<div class="modal-body">
+	    <div ng-show="error" class="alert alert-danger">{{error}}</div>
+    	<div ng-show="token">
+    		<p>Your ticket is</p>
+    	</div>
+    	<div class="input-group" style="width: 100%; margin-bottom:20px;" >
+			<input id="token"class="form-control form-control-lg" ng-model="token" readonly>
+		</div>
+		<img ng-hide="token" ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+	<div class="row">
+		<div class="col-md-5 col-md-offset-7">
+			<form ng-show="token">
+		        <button type="submit"  ngclipboard data-clipboard-target="#token" class="btn btn-default2">
+			        <span class="glyphicon glyphicon-copy"></span> Copy
+			    </button>
+		        <button type="submit"  ng-click="cancel()" class="btn btn-default">Close</button>
+		    </form>
+		</div>
+	</div>
+</div>

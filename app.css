@@ -90,6 +90,14 @@ header{
 	border: 1px solid #41557b;
 	margin-bottom: -50%;
 }
+.graph-hide{
+	height: 0px;
+}
+.graph-show{
+	min-width: 310px; 
+	height: 400px; 
+	margin: 0 auto;
+}
 .header-image{
 	color: white;
 	background-image: url("images/indexEdited.png");
@@ -126,6 +134,16 @@ header{
 	 white-space: nowrap; 
 	 overflow: hidden; 
 	 text-overflow: ellipsis;
+}
+.meter{
+	margin: 10px 10px; 
+	border-radius: 10px; 
+	background-color: white;
+}
+.meter-header{
+	border-radius: 10px; 
+	background-color: #41557b; 
+	color: white
 }
 .marketplace{
 	text-align: center;
@@ -172,12 +190,13 @@ header{
 	
 }
 .role{
+	margin: 10px 10px;
 	border-radius: 10px; 
 	background-color: white; 
 	color: #41557b
 }
 .role-header{
-	margin-top: 15px;
+	margin: 0px 0px 10px 0px;
 	border-radius: 10px; 
 	background-color: #41557b; 
 	color: white
@@ -205,9 +224,10 @@ header{
 
 }
 .service-name{
-	background-color: #eaf2f6;
+	background-color: #e6f6ff;
 	padding: 5vh 2vw;
 	border-radius: 10px;
+	margin-bottom: 10px;
 }
 .text-middle{
 	
