@@ -10,7 +10,7 @@ angular
                  	'Authorization':  'Basic '
                	}
            	}
-			return $http.get(req);
+			return $http(req);
 		};
 
 		function getCollection() {
@@ -47,7 +47,7 @@ angular
                  	'Authorization':  'Basic '
                	}
            	}
-			return $http.get(req);
+			return $http(req);
 		};		
 		function getMyPageService(username,page,pagesize) {
 			var req = {
@@ -57,7 +57,7 @@ angular
                  	'Authorization':  'Basic '
                	}
            	}
-			return $http.get(req);
+			return $http(req);
 		};
 		function getPageService(page,pagesize) {
 			var req = {
@@ -67,7 +67,7 @@ angular
                  	'Authorization':  'Basic '
                	}
            	}
-			return $http.get(req);
+			return $http(req);
 		};
 
 		function getMyCollection(username) {
