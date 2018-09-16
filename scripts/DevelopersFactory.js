@@ -3,7 +3,14 @@ angular
 	.factory('DevelopersFactory',function(userService,$http,AuthenticationService) {
 	
 		function getService() {
-			return $http.get('https://api.smartcity.kmitl.io/api/v1/services');
+			var req = {
+               	method: 'GET',
+               	url: 'https://api.smartcity.kmitl.io/api/v1/services',
+               	headers: {
+                 	'Authorization':  'Basic '
+               	}
+           	}
+			return $http.get(req);
 		};
 
 		function getCollection() {
@@ -33,13 +40,34 @@ angular
 			});
 		};
 		function getMyService(username) {
-			return $http.get('https://api.smartcity.kmitl.io/api/v1/services?owner='+username);
+			var req = {
+               	method: 'GET',
+               	url: 'https://api.smartcity.kmitl.io/api/v1/services?owner='+username,
+               	headers: {
+                 	'Authorization':  'Basic '
+               	}
+           	}
+			return $http.get(req);
 		};		
 		function getMyPageService(username,page,pagesize) {
-			return $http.get('https://api.smartcity.kmitl.io/api/v1/services?owner='+username+'&page='+page+'&size='+pagesize);
+			var req = {
+               	method: 'GET',
+               	url: 'https://api.smartcity.kmitl.io/api/v1/services?owner='+username+'&page='+page+'&size='+pagesize,
+               	headers: {
+                 	'Authorization':  'Basic '
+               	}
+           	}
+			return $http.get(req);
 		};
 		function getPageService(page,pagesize) {
-			return $http.get('https://api.smartcity.kmitl.io/api/v1/services?page='+page+'&size='+pagesize);
+			var req = {
+               	method: 'GET',
+               	url: 'https://api.smartcity.kmitl.io/api/v1/services?page='+page+'&size='+pagesize,
+               	headers: {
+                 	'Authorization':  'Basic '
+               	}
+           	}
+			return $http.get(req);
 		};
 
 		function getMyCollection(username) {
@@ -78,6 +106,29 @@ angular
 		               	method: 'GET',
 		               	// url: 'https://api.smartcity.kmitl.io/api/v1/collections/'+collectionID+'?last=10'
 		               	url: 'https://api.smartcity.kmitl.io/api/v1/collections/'+collectionID
+		           	}
+		        	callback($http(req));
+	            }
+	        });
+		}
+		function getCollectionGraphTime(time,collectionID,callback){
+			userService.genTicket(collectionID, function(response) {
+	            if(response.success) {
+	                var req = {
+		               	method: 'GET',
+		               	url: 'https://api.smartcity.kmitl.io/api/v1/collections/'+collectionID+'?last='+time,
+		               	// url: 'https://api.smartcity.kmitl.io/api/v1/collections/'+collectionID,
+		               	headers: {
+		                 	'Authorization':  response.data
+		               	}
+		           	}
+		        	callback($http(req));
+	            } 
+	            else {
+	                var req = {
+		               	method: 'GET',
+		               	url: 'https://api.smartcity.kmitl.io/api/v1/collections/'+collectionID+'?last='+time
+		               	// url: 'https://api.smartcity.kmitl.io/api/v1/collections/'+collectionID
 		           	}
 		        	callback($http(req));
 	            }
@@ -140,7 +191,11 @@ angular
 		function meterCollection(id,callback){
 			var req = {
 				method: 'GET',
-				url: 'https://api.smartcity.kmitl.io/api/v1/meters/collections?collectionId='+id+'&aggregate=true'
+				url: 'https://api.smartcity.kmitl.io/api/v1/meters/collections?collectionId='+id+'&aggregate=true',
+				headers:{
+					"accept" : "application/json",
+					"Content-Type": "application/json"
+				}
 			}
         	var response = {success : false,read : 0,write:0}
         	$http(req)
@@ -154,6 +209,9 @@ angular
 						response.write = data.data[i].size;
 					}
 				}
+						response.read = data.data[0].size;
+						response.write = data.data[1].size;
+
 				response.success = true;
 				callback(response);
 			},function(error){
@@ -209,6 +267,7 @@ angular
 			});
 		}
 		return {
+			getCollectionGraphTime: getCollectionGraphTime,
 			getRoleCollection: getRoleCollection,
 			getAllRoleCollection: getAllRoleCollection,
 			meterCollection: meterCollection,

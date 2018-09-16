@@ -1,0 +1,34 @@
+<div class="modal-header">
+    <h3 class="modal-title">Manage access control</h3>
+</div>
+<div class="modal-body">
+    <div ng-show="error" class="alert alert-danger">{{error}}</div>
+    <ul>
+	    <div ng-repeat="user in users">
+	      	<label>Name: <input class="form-control" ng-model="user.user_name" readonly></label>
+	      	<label>
+	      		Role: <input class="form-control" ng-model="user.role" readonly>
+			</label>
+	      	<button ng-if="user.role != 'owner'" class="btn btn-default" ng-click="delete(user.user_name,$index)" aria-label="Remove">
+	      		<span class="glyphicon glyphicon-trash"></span> Delete
+	      	</button>
+	    </div>
+	    <div>
+	      	<label>Name: <input class="form-control" ng-model="add.name"></label>
+	      	
+	      	<label>
+	      		Role:
+	      		<select class="form-control" ng-model="add.role">
+			  		<option value="contributor">CONTRIBUTOR</option>
+			  		<option value="read">READ</option>
+				</select>
+			</label>
+	      	<button class="btn btn-default" ng-click="addClick(add.name,add.role)">
+	      		<span class="glyphicon glyphicon-plus"></span> Add
+	      	</button>
+	    </div>
+	</ul>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning" type="btn btn-default" ng-click="close()">Close</button>
+</div>

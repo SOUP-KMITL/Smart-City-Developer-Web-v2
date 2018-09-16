@@ -2,6 +2,13 @@ angular
 	.module('DevelopersApp')
 	.controller('myCollectionDetailController',function(userService,$route,$routeParams,$uibModal,$interval,$location,$scope,$rootScope,$http,DevelopersFactory,AuthenticationService){
         $scope.stop2 = $interval(function(){ $route.reload();},360000);
+        $scope.manageAccess = function(){
+            $uibModal.open({
+                templateUrl: 'pages/manage-access.html',
+                controller: 'ManageAccessControlController'
+            });
+        }
+
         $scope.genticket = function(id){
             $uibModal.open({
                 templateUrl: 'pages/genticket.html',
@@ -19,7 +26,7 @@ angular
                             $scope.dataLoading = false;
                         }
                     });
-                    
+
                     $scope.cancel = function () {
                         $uibModalInstance.dismiss('cancel');
                     }
@@ -104,14 +111,27 @@ angular
                     events: {
                         load: function () {
                             var series = this.series[0];
+                            DevelopersFactory.getCollectionGraph($routeParams.id,function(response){
+                                response
+                                .then(function(result){
+                                    for (var i = 0;i < result.data.length; i++) {
+                                     var xx = (new Date(result.data[i].ts)).getTime();
+                                     var yy = parseInt(result.data[i].value);
+                                     series.addPoint([xx, yy], true, false);
+                                    }
+                                },
+                                function(error){
+                                  console.log(error);
+                                });
+                            })
                             $scope.stop = $interval(function(){
-                                DevelopersFactory.getCollectionGraph($routeParams.id,function(response){
+                                DevelopersFactory.getCollectionGraphTime(10,$routeParams.id,function(response){
                                     response
                                     .then(function(data){
                                         console.log(data);
                                         for (var i = 0;i < data.data.length; i++) {
                                          x = (new Date(data.data[i].ts)).getTime();
-                                         y = parseInt(data.data[i].data);
+                                         y = parseInt(data.data[i].value);
                                          series.addPoint([x, y], true, false);
                                         }
                                     },
@@ -120,7 +140,7 @@ angular
                                     });
                                 })
                                 
-                            },30000);
+                            },10000);
                         }
                     }
                 },
@@ -159,29 +179,7 @@ angular
                     data: (function () {
                         // generate an array of random data
                         var data = [];
-                            // time = (new Date()).getTime(),
-                            // i;
-
-                            // data.push({
-                            //     x: time - 5 * 1000,
-                            //     y: 1865
-                            // });
-                            // data.push({
-                            //     x: time - 4 * 1000,
-                            //     y: 2165
-                            // });
-                            // data.push({
-                            //     x: time - 3 * 1000,
-                            //     y: 2013
-                            // });
-                            // data.push({
-                            //     x: time - 2 * 1000,
-                            //     y: 2190
-                            // });
-                            // data.push({
-                            //     x: time - 1 * 1000,
-                            //     y: 2046
-                            // });
+                            
                         return data;
                     }())
                 }]
@@ -194,12 +192,13 @@ angular
             $scope.reads = response.reads;
             console.log(response);
         });
-        DevelopersFactory.meterCollection($routeParams.id,function(response){
-
+        $interval(function(){
+            DevelopersFactory.meterCollection($routeParams.id,function(response){
             $scope.read = response.read;
             $scope.write = response.write;
-            console.log(response);
         });
+        },3000);
+       
 
         DevelopersFactory.amService(AuthenticationService.getuser().data.userName,function(response){
             $scope.servicesTotalElements = response.data;
@@ -225,7 +224,7 @@ angular
             if($scope.collection.category == null){
                 $scope.collection.category = 'No data';
             }
-            if($scope.collection.isOpen == true){
+            if($scope.collection.open == true){
                 $scope.collection.isOpen = 'Public';
             }
             else {
