@@ -95,7 +95,15 @@ angular
 		};
         DevelopersFactory.getRoleCollection($routeParams.id,function(response){
             $scope.role = response.role;
+            console.log(response);
             if(response.role == 'OWNER'){
+
+            $interval(function(){
+                DevelopersFactory.meterCollection($routeParams.id,function(response){
+                $scope.read = response.read;
+                $scope.write = response.write;
+            });
+            },3000);
 
             Highcharts.setOptions({
                 global: {
@@ -192,13 +200,6 @@ angular
             $scope.reads = response.reads;
             console.log(response);
         });
-        $interval(function(){
-            DevelopersFactory.meterCollection($routeParams.id,function(response){
-            $scope.read = response.read;
-            $scope.write = response.write;
-        });
-        },3000);
-       
 
         DevelopersFactory.amService(AuthenticationService.getuser().data.userName,function(response){
             $scope.servicesTotalElements = response.data;

@@ -160,6 +160,17 @@ angular
            	}
         	return $http(req);
 		} 
+		function createCollection(data){
+			var req = {
+               	method: 'POST',
+               	data: data,
+               	url: 'https://api.smartcity.kmitl.io/api/v1/collections?json=true',
+               headers: {
+                 'Authorization':  AuthenticationService.getuser().data.accessToken
+               }
+           	}
+        	return $http(req);
+		}
 		function updateThunbnail(id,img){
 			var form = new FormData();
 			form.append("file", img);
@@ -209,9 +220,14 @@ angular
 						response.write = data.data[i].size;
 					}
 				}
+				try{
+
 						response.read = data.data[0].size;
 						response.write = data.data[1].size;
+				}
+				catch{
 
+				}
 				response.success = true;
 				callback(response);
 			},function(error){
@@ -267,6 +283,7 @@ angular
 			});
 		}
 		return {
+			createCollection: createCollection,
 			getCollectionGraphTime: getCollectionGraphTime,
 			getRoleCollection: getRoleCollection,
 			getAllRoleCollection: getAllRoleCollection,

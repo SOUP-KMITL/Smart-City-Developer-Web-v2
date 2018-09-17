@@ -1,7 +1,66 @@
 angular
 	.module('DevelopersApp')
 	.controller('createCollectionController',function($uibModal,$anchorScroll,$location,$scope,$http,DevelopersFactory,AuthenticationService){
-	console.log($scope.imageSrc);
+		$scope.columns = [];
+		$scope.ts = {
+			"name": "ts",
+		    "type": "timestamp",
+		    "indexed": true
+		}
+		$scope.addClick = function(name,type,index){
+			$scope.aname = "";
+			$scope.atype = "";
+			$scope.aindexed = "";
+			var temp = {
+				"name": name,
+			    "type": type,
+			    "indexed": index
+			}
+			$scope.columns.push(temp);
+		}
+
+		$scope.deletets = function(name,index){
+			$scope.columns.splice(index, 1);
+		}
+		$scope.deletehd = function(name,index){
+			$scope.headers.splice(index, 1);
+		}
+		$scope.deletehd = function(name,index){
+			$scope.headers.splice(index, 1);
+		}
+
+		function addcolumns(){
+			var data = $scope.columns;
+			if($scope.collectionType == 'timeseries'){
+				
+				data.push($scope.ts);
+			}
+			console.log($scope.columns);
+			var json = angular.toJson( data );
+			return json;
+		}
+		$scope.create = function(){
+			var data = {
+				"collectionName": $scope.collectionName,
+				"description": $scope.collectionDescription,
+				"type": $scope.collectionType,
+				"category": $scope.collectionCategory,
+				"example": JSON.parse($scope.collectionExample),
+				"columns": JSON.parse(addcolumns()),
+				"isOpen": $scope.collectionOpen
+			}
+			console.log(data);
+			DevelopersFactory.createCollection(data)
+			.then(function(data){
+				console.log(data);
+            	$location.path('/myProfile/collection');
+
+			},function(error){
+				$scope.error = error;
+				console.log(error);
+
+			})
+		}
         $scope.goto = function(url){
             $location.path(url);
         }
@@ -16,59 +75,6 @@ angular
 			$scope.auth = false;
 			AuthenticationService.ClearCredentials();
 		}
-		function logincomplete(data){
-			$scope.user = data;
-			$scope.auth = true;
-		}
-		$scope.openModal = function () {
-		    $uibModal.open({
-		      templateUrl: 'pages/login.html',
-		      controller: function ($scope, $uibModalInstance) {
-		      		AuthenticationService.ClearCredentials();
 
-			      $scope.login = function (username, password) {
-			      	console.log("login with : "+ username +" : "+password);
-			          $scope.dataLoading = true;
-			          AuthenticationService.Login(username, password, function(response) {
-			              if(response.success) {
-			                  AuthenticationService.SetCredentials(username, password);
-			                  $uibModalInstance.close();
-			                  logincomplete(response.data);
-			              } else {
-			                  $scope.error = response.message;
-			                  $scope.dataLoading = false;
-			              }
-			          });
-			      }; 
-		        
-		      }
-		    })
-		};
-
-		  $scope.pageChanged = function() {
-			DevelopersFactory.getPageService($scope.CurrentPage-1,10)
-			.then(function(data){
-				console.log($scope.CurrentPage);
-				console.log(data);
-				$scope.services = data.data.content;
-			  	$scope.TotalItems = data.data.totalElements;
-			  	$anchorScroll();
-			},
-			function(error){
-				console.log(error);
-			});
-		  };
-
-		DevelopersFactory.getMyPageService(AuthenticationService.getuser().data.userName,0,10)
-		.then(function(data){
-			$scope.services = data.data.content;
-			console.log(data);
-		  	$scope.maxSize = 5;
-		  	$scope.TotalItems = data.data.totalElements;
-		  	$scope.CurrentPage = 1;
-		},
-		function(error){
-			console.log(error);
-		});
 
 	});
